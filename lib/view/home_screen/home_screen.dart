@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
+          child: Stack(
             children: [
               SizedBox(
                 height: h - 90,
@@ -176,10 +176,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     SizeBoxService.sH20,
                     const Spacer(),
-                    Image.asset("assets/images/bottombar.png"),
                   ],
                 ),
               ),
+              Positioned(
+                  bottom: 0,
+                  child: Container(
+                      height: h * 0.09,
+                      child: Image.asset("assets/images/Screenshot.png"))),
             ],
           ),
         ),
