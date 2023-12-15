@@ -10,6 +10,7 @@ import 'package:edraak/view/predication_screen/predication_screen.dart';
 import 'package:edraak/view/user_info_screen/user_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/utils.dart';
 
 import '../../pref_manager/pref_manager.dart';
 
@@ -104,86 +105,83 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         centerTitle: true,
       ),
+      bottomNavigationBar: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage('assets/images/image_bottom.png'),
+            ),
+          ),
+          height: h * 0.09),
       body: Center(
-        child: SingleChildScrollView(
-          child: Stack(
+        child: SizedBox(
+          height: h - 90,
+          child: Column(
             children: [
-              SizedBox(
-                height: h - 90,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Hello ${PreferenceManager.getUserName() ?? "User"}!",
-                          style: TextStyleHelper.kBlue90025W500,
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-
-                    /// Select Predication
-                    CommonButton().bSquareRoundBorderPrimaryBlueButton(
-                      height: 80,
-                      context,
-                      title: 'Disease Forecast',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const PredicationScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    SizeBoxService.sH30,
-
-                    ///List of Diseases
-
-                    CommonButton().bSquareRoundBorderPrimaryBlueButton(
-                      height: 80,
-                      context,
-                      title: 'List of Diseases',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ListOfDiseasesScreen(),
-                          ),
-                        );
-                      },
-                    ),
-
-                    SizeBoxService.sH30,
-
-                    ///User Info
-
-                    CommonButton().bSquareRoundBorderPrimaryBlueButton(
-                      height: 80,
-                      context,
-                      title: 'User Information',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const UserInfoScreen(),
-                          ),
-                        );
-                      },
-                    ),
-
-                    SizeBoxService.sH20,
-                    const Spacer(),
-                  ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Hello, ${PreferenceManager.getUserName().toString().capitalizeFirst ?? "User"}!",
+                    style: TextStyleHelper.kBlue90025W500,
+                  ),
                 ),
               ),
-              Positioned(
-                  bottom: 0,
-                  child: Container(
-                      height: h * 0.09,
-                      child: Image.asset("assets/images/Screenshot.png"))),
+              const Spacer(),
+
+              /// Select Predication
+              CommonButton().bSquareRoundBorderPrimaryBlueButton(
+                height: 80,
+                context,
+                title: 'Disease Forecast',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PredicationScreen(),
+                    ),
+                  );
+                },
+              ),
+              SizeBoxService.sH30,
+
+              ///List of Diseases
+
+              CommonButton().bSquareRoundBorderPrimaryBlueButton(
+                height: 80,
+                context,
+                title: 'List of Diseases',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ListOfDiseasesScreen(),
+                    ),
+                  );
+                },
+              ),
+
+              SizeBoxService.sH30,
+
+              ///User Info
+
+              CommonButton().bSquareRoundBorderPrimaryBlueButton(
+                height: 80,
+                context,
+                title: 'User Information',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const UserInfoScreen(),
+                    ),
+                  );
+                },
+              ),
+
+              SizeBoxService.sH20,
+              const Spacer(),
             ],
           ),
         ),
